@@ -1,0 +1,13 @@
+{
+  "extends": [
+    "@linaria/stylelint-config-standard-linaria"
+  ],
+  "rules": {
+    "selector-pseudo-class-no-unknown": [
+      true,
+      {
+        "ignorePseudoClasses": ["global"]
+      }
+    ]
+  }
+}

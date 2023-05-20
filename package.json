@@ -1,0 +1,50 @@
+{
+  "name": "super-todo-app",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "preinstall": "npx only-allow pnpm",
+    "prepare": "husky install",
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "format": "prettier --write \"src/**/*.{ts,tsx,js,jsx,json,css,scss,md}\"",
+    "lint:css": "stylelint src/**/*.{ts,tsx} --max-warnings 0",
+    "lint:ts": "eslint src --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+    "lint:all": "pnpm run lint:css && pnpm run lint:ts",
+    "preview": "vite preview"
+  },
+  "lint-staged": {
+    "*.{ts,tsx}": [
+      "pnpm run lint:all"
+    ]
+  },
+  "dependencies": {
+    "@linaria/core": "^4.2.10",
+    "@linaria/react": "^4.3.8",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "@babel/preset-react": "^7.18.6",
+    "@babel/preset-typescript": "^7.21.5",
+    "@linaria/babel-preset": "^4.4.5",
+    "@linaria/stylelint-config-standard-linaria": "^4.1.5",
+    "@linaria/vite": "^4.2.11",
+    "@types/react": "^18.0.28",
+    "@types/react-dom": "^18.0.11",
+    "@typescript-eslint/eslint-plugin": "^5.57.1",
+    "@typescript-eslint/parser": "^5.57.1",
+    "@vitejs/plugin-react": "^4.0.0",
+    "eslint": "^8.38.0",
+    "eslint-config-prettier": "^8.8.0",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-react-refresh": "^0.3.4",
+    "husky": "^8.0.0",
+    "lint-staged": "^13.2.2",
+    "prettier": "^2.8.8",
+    "stylelint": "^15.6.2",
+    "typescript": "^5.0.2",
+    "vite": "^4.3.2"
+  }
+}
