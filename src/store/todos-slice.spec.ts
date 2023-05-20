@@ -1,43 +1,44 @@
 import { describe, it, expect } from "vitest";
 
 import todoReducer, {
-  TodoState,
+  initialState,
   add,
   remove,
   toggle,
   update,
-} from "./todo-slice.ts";
+  Todo,
+} from "./todos-slice.ts";
 
 describe("counter reducer", () => {
-  const initialState: TodoState = {
-    todos: [],
-  };
-
   it("should handle initial state", () => {
     expect(todoReducer(undefined, { type: "unknown" })).toEqual(initialState);
   });
 
   it("should handle add", () => {
-    const newTodo = {
-      id: "1",
+    const newTodo: Todo = {
+      id: "33",
       title: "Test",
       description: "Test",
       completed: false,
     };
 
     const actual = todoReducer(initialState, add(newTodo));
-    expect(actual.todos.length).toEqual(1);
-    expect(actual.todos[0].title).toEqual(newTodo.title);
+    expect(actual.todos.length).toEqual(initialState.todos.length + 1);
+    expect(actual.todos[initialState.todos.length].title).toEqual(
+      newTodo.title
+    );
 
     const newTodo2 = {
-      id: "2",
+      id: "44",
       title: "Test2",
       description: "Test2",
       completed: false,
     };
     const actual2 = todoReducer(actual, add(newTodo2));
-    expect(actual2.todos.length).toEqual(2);
-    expect(actual2.todos[1].title).toEqual(newTodo2.title);
+    expect(actual2.todos.length).toEqual(initialState.todos.length + 2);
+    expect(actual2.todos[initialState.todos.length + 1].title).toEqual(
+      newTodo2.title
+    );
   });
 
   it("should handle remove", () => {

@@ -11,12 +11,38 @@ export interface TodoState {
   todos: Todo[];
 }
 
-const initialState: TodoState = {
-  todos: [],
+export const initialState: TodoState = {
+  todos: [
+    {
+      id: "1",
+      title: "Learn React",
+      description:
+        "Learn React and TypeScript with Redux Toolkit and Linaria to build a Todo App",
+      completed: false,
+    },
+    {
+      id: "2",
+      title: "Build Todo App",
+      description: "Build super simple Todo App",
+      completed: false,
+    },
+    {
+      id: "3",
+      title: "Implement todo slice",
+      description: "Implement todo slice with Redux Toolkit",
+      completed: false,
+    },
+    {
+      id: "4",
+      title: "Review and test",
+      description: "Review and test todo app",
+      completed: false,
+    },
+  ],
 };
 
-export const todoSlice = createSlice({
-  name: "todo",
+export const todosSlice = createSlice({
+  name: "todos",
   initialState,
   reducers: {
     add: (state, action: PayloadAction<Todo>) => {
@@ -41,6 +67,8 @@ export const todoSlice = createSlice({
   },
 });
 
-export const { add, remove, toggle, update } = todoSlice.actions;
+export const { add, remove, toggle, update } = todosSlice.actions;
 
-export default todoSlice.reducer;
+export const selectTodos = (state: { todos: TodoState }) => state.todos.todos;
+
+export default todosSlice.reducer;

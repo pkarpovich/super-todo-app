@@ -28,6 +28,10 @@ export const globalStyles = css`
       height: 100vh;
       display: flex;
       flex: 1;
+
+      & > div {
+        flex: 1;
+      }
     }
   }
 `;
