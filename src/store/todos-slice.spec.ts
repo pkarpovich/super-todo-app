@@ -9,6 +9,27 @@ import todoReducer, {
   Todo,
 } from "./todos-slice.ts";
 
+const initial = {
+  items: [
+    {
+      id: "1",
+      title: "Test",
+      description: "Test",
+      completed: false,
+      completedAt: null,
+      createdAt: new Date().getTime(),
+    },
+    {
+      id: "2",
+      title: "Test2",
+      description: "Test2",
+      completed: false,
+      completedAt: null,
+      createdAt: new Date().getTime(),
+    },
+  ],
+};
+
 describe("counter reducer", () => {
   it("should handle initial state", () => {
     expect(todoReducer(undefined, { type: "unknown" })).toEqual(initialState);
@@ -20,6 +41,8 @@ describe("counter reducer", () => {
       title: "Test",
       description: "Test",
       completed: false,
+      completedAt: null,
+      createdAt: new Date().getTime(),
     };
 
     const actual = todoReducer(initialState, add(newTodo));
@@ -31,6 +54,8 @@ describe("counter reducer", () => {
       title: "Test2",
       description: "Test2",
       completed: false,
+      completedAt: null,
+      createdAt: new Date().getTime(),
     };
     const actual2 = todoReducer(actual, add(newTodo2));
     expect(actual2.items.length).toEqual(initialState.items.length + 2);
@@ -38,49 +63,16 @@ describe("counter reducer", () => {
   });
 
   it("should handle remove", () => {
-    const initial = {
-      items: [
-        {
-          id: "1",
-          title: "Test",
-          description: "Test",
-          completed: false,
-        },
-        {
-          id: "2",
-          title: "Test2",
-          description: "Test2",
-          completed: false,
-        },
-      ],
-    };
-
     const actual = todoReducer(initial, remove(initial.items[0].id));
     expect(actual.items.length).toEqual(1);
     expect(actual.items[0].id).toEqual("2");
   });
 
   it("should handle toggle", () => {
-    const initial = {
-      items: [
-        {
-          id: "1",
-          title: "Test",
-          description: "Test",
-          completed: false,
-        },
-        {
-          id: "2",
-          title: "Test2",
-          description: "Test2",
-          completed: false,
-        },
-      ],
-    };
-
     const actual = todoReducer(initial, toggle(initial.items[0].id));
     expect(actual.items[0].completed).toEqual(true);
     expect(actual.items[1].completed).toEqual(false);
+
     const actual2 = todoReducer(actual, toggle(initial.items[0].id));
     expect(actual2.items[0].completed).toEqual(false);
     expect(actual2.items[1].completed).toEqual(false);
@@ -94,6 +86,8 @@ describe("counter reducer", () => {
           title: "Test",
           description: "Test",
           completed: false,
+          completedAt: null,
+          createdAt: new Date().getTime(),
         },
       ],
     };

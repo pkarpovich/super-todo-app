@@ -4,23 +4,27 @@ import { Todo } from "../store/todos-slice.ts";
 import { TodoList } from "./TodoList";
 import { renderWithProviders } from "../store/test-utils.tsx";
 
+const todos: Todo[] = [
+  {
+    id: "1",
+    title: "Todo 1",
+    description: "Description 1",
+    completed: false,
+    completedAt: null,
+    createdAt: new Date().getTime(),
+  },
+  {
+    id: "2",
+    title: "Todo 2",
+    description: "Description 2",
+    completed: true,
+    completedAt: new Date().getTime(),
+    createdAt: new Date().getTime(),
+  },
+];
+
 describe("TodoList", () => {
   it("renders todos correctly", () => {
-    const todos: Todo[] = [
-      {
-        id: "1",
-        title: "Todo 1",
-        description: "Description 1",
-        completed: false,
-      },
-      {
-        id: "2",
-        title: "Todo 2",
-        description: "Description 2",
-        completed: true,
-      },
-    ];
-
     const { getByText } = renderWithProviders(<TodoList />, {
       preloadedState: {
         todos: {
@@ -36,21 +40,6 @@ describe("TodoList", () => {
   });
 
   it("handle remove correctly", () => {
-    const todos: Todo[] = [
-      {
-        id: "1",
-        title: "Todo 1",
-        description: "Description 1",
-        completed: false,
-      },
-      {
-        id: "2",
-        title: "Todo 2",
-        description: "Description 2",
-        completed: true,
-      },
-    ];
-
     const { getByText, queryByText, getAllByTestId } = renderWithProviders(
       <TodoList />,
       {
@@ -72,21 +61,6 @@ describe("TodoList", () => {
   });
 
   it("handle toggle correctly", () => {
-    const todos: Todo[] = [
-      {
-        id: "1",
-        title: "Todo 1",
-        description: "Description 1",
-        completed: false,
-      },
-      {
-        id: "2",
-        title: "Todo 2",
-        description: "Description 2",
-        completed: true,
-      },
-    ];
-
     const { getByText, getAllByTestId } = renderWithProviders(<TodoList />, {
       preloadedState: {
         todos: {

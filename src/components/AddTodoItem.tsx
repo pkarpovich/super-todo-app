@@ -77,10 +77,8 @@ export const AddTodoItem = memo(() => {
 
       dispatch(
         add({
-          id: Date.now().toString(),
           title,
           description,
-          completed: false,
         })
       );
 
