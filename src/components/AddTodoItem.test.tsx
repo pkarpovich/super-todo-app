@@ -35,8 +35,8 @@ describe("TodoList", () => {
     expect(getByTestId("title-input")).toHaveValue("");
     expect(getByTestId("description-input")).toHaveValue("");
 
-    expect(store.getState().todos.todos[0].title).toEqual("Test Title");
-    expect(store.getState().todos.todos[0].description).toEqual(
+    expect(store.getState().todos.items[0].title).toEqual("Test Title");
+    expect(store.getState().todos.items[0].description).toEqual(
       "Test Description"
     );
   });
@@ -44,7 +44,7 @@ describe("TodoList", () => {
   it("does not submit form if title is empty", () => {
     const store = setupStore({
       todos: {
-        todos: [],
+        items: [],
       },
     });
 
@@ -63,13 +63,13 @@ describe("TodoList", () => {
     expect(getByTestId("title-input")).toHaveValue("");
     expect(getByTestId("description-input")).toHaveValue("Test Description");
 
-    expect(store.getState().todos.todos).toHaveLength(0);
+    expect(store.getState().todos.items).toHaveLength(0);
   });
 
   it("allow submit form if description is empty", () => {
     const store = setupStore({
       todos: {
-        todos: [],
+        items: [],
       },
     });
 
@@ -88,7 +88,7 @@ describe("TodoList", () => {
     expect(getByTestId("title-input")).toHaveValue("");
     expect(getByTestId("description-input")).toHaveValue("");
 
-    expect(store.getState().todos.todos[0].title).toEqual("Test Title");
-    expect(store.getState().todos.todos[0].description).toEqual("");
+    expect(store.getState().todos.items[0].title).toEqual("Test Title");
+    expect(store.getState().todos.items[0].description).toEqual("");
   });
 });

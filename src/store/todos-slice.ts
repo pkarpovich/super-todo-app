@@ -8,11 +8,11 @@ export type Todo = {
 };
 
 export interface TodoState {
-  todos: Todo[];
+  items: Todo[];
 }
 
 export const initialState: TodoState = {
-  todos: [
+  items: [
     {
       id: "1",
       title: "Learn React",
@@ -46,19 +46,19 @@ export const todosSlice = createSlice({
   initialState,
   reducers: {
     add: (state, action: PayloadAction<Todo>) => {
-      state.todos = [action.payload, ...state.todos];
+      state.items = [action.payload, ...state.items];
     },
     remove: (state, action: PayloadAction<string>) => {
-      state.todos = state.todos.filter((todo) => todo.id !== action.payload);
+      state.items = state.items.filter((todo) => todo.id !== action.payload);
     },
     toggle: (state, action: PayloadAction<string>) => {
-      const todo = state.todos.find((todo) => todo.id === action.payload);
+      const todo = state.items.find((todo) => todo.id === action.payload);
       if (todo) {
         todo.completed = !todo.completed;
       }
     },
     update: (state, action: PayloadAction<Todo>) => {
-      const todo = state.todos.find((todo) => todo.id === action.payload.id);
+      const todo = state.items.find((todo) => todo.id === action.payload.id);
       if (todo) {
         todo.title = action.payload.title;
         todo.description = action.payload.description;
@@ -69,6 +69,6 @@ export const todosSlice = createSlice({
 
 export const { add, remove, toggle, update } = todosSlice.actions;
 
-export const selectTodos = (state: { todos: TodoState }) => state.todos.todos;
+export const selectTodos = (state: { todos: TodoState }) => state.todos.items;
 
 export default todosSlice.reducer;

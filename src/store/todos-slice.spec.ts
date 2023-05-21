@@ -23,8 +23,8 @@ describe("counter reducer", () => {
     };
 
     const actual = todoReducer(initialState, add(newTodo));
-    expect(actual.todos.length).toEqual(initialState.todos.length + 1);
-    expect(actual.todos[0].title).toEqual(newTodo.title);
+    expect(actual.items.length).toEqual(initialState.items.length + 1);
+    expect(actual.items[0].title).toEqual(newTodo.title);
 
     const newTodo2 = {
       id: "44",
@@ -33,13 +33,13 @@ describe("counter reducer", () => {
       completed: false,
     };
     const actual2 = todoReducer(actual, add(newTodo2));
-    expect(actual2.todos.length).toEqual(initialState.todos.length + 2);
-    expect(actual2.todos[0].title).toEqual(newTodo2.title);
+    expect(actual2.items.length).toEqual(initialState.items.length + 2);
+    expect(actual2.items[0].title).toEqual(newTodo2.title);
   });
 
   it("should handle remove", () => {
     const initial = {
-      todos: [
+      items: [
         {
           id: "1",
           title: "Test",
@@ -55,14 +55,14 @@ describe("counter reducer", () => {
       ],
     };
 
-    const actual = todoReducer(initial, remove(initial.todos[0].id));
-    expect(actual.todos.length).toEqual(1);
-    expect(actual.todos[0].id).toEqual("2");
+    const actual = todoReducer(initial, remove(initial.items[0].id));
+    expect(actual.items.length).toEqual(1);
+    expect(actual.items[0].id).toEqual("2");
   });
 
   it("should handle toggle", () => {
     const initial = {
-      todos: [
+      items: [
         {
           id: "1",
           title: "Test",
@@ -78,17 +78,17 @@ describe("counter reducer", () => {
       ],
     };
 
-    const actual = todoReducer(initial, toggle(initial.todos[0].id));
-    expect(actual.todos[0].completed).toEqual(true);
-    expect(actual.todos[1].completed).toEqual(false);
-    const actual2 = todoReducer(actual, toggle(initial.todos[0].id));
-    expect(actual2.todos[0].completed).toEqual(false);
-    expect(actual2.todos[1].completed).toEqual(false);
+    const actual = todoReducer(initial, toggle(initial.items[0].id));
+    expect(actual.items[0].completed).toEqual(true);
+    expect(actual.items[1].completed).toEqual(false);
+    const actual2 = todoReducer(actual, toggle(initial.items[0].id));
+    expect(actual2.items[0].completed).toEqual(false);
+    expect(actual2.items[1].completed).toEqual(false);
   });
 
   it("should handle update", () => {
     const initial = {
-      todos: [
+      items: [
         {
           id: "1",
           title: "Test",
@@ -100,17 +100,17 @@ describe("counter reducer", () => {
 
     const actual = todoReducer(
       initial,
-      update({ ...initial.todos[0], title: "Test2" })
+      update({ ...initial.items[0], title: "Test2" })
     );
 
-    expect(actual.todos[0].title).toEqual("Test2");
-    expect(actual.todos[0].description).toEqual("Test");
+    expect(actual.items[0].title).toEqual("Test2");
+    expect(actual.items[0].description).toEqual("Test");
 
     const actual2 = todoReducer(
       actual,
-      update({ ...actual.todos[0], description: "Test2" })
+      update({ ...actual.items[0], description: "Test2" })
     );
-    expect(actual2.todos[0].title).toEqual("Test2");
-    expect(actual2.todos[0].description).toEqual("Test2");
+    expect(actual2.items[0].title).toEqual("Test2");
+    expect(actual2.items[0].description).toEqual("Test2");
   });
 });

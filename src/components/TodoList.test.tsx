@@ -24,7 +24,7 @@ describe("TodoList", () => {
     const { getByText } = renderWithProviders(<TodoList />, {
       preloadedState: {
         todos: {
-          todos,
+          items: todos,
         },
       },
     });
@@ -56,7 +56,7 @@ describe("TodoList", () => {
       {
         preloadedState: {
           todos: {
-            todos,
+            items: todos,
           },
         },
       }
@@ -90,7 +90,7 @@ describe("TodoList", () => {
     const { getByText, getAllByTestId } = renderWithProviders(<TodoList />, {
       preloadedState: {
         todos: {
-          todos,
+          items: todos,
         },
       },
     });
