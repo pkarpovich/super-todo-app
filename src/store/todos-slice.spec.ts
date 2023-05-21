@@ -24,9 +24,7 @@ describe("counter reducer", () => {
 
     const actual = todoReducer(initialState, add(newTodo));
     expect(actual.todos.length).toEqual(initialState.todos.length + 1);
-    expect(actual.todos[initialState.todos.length].title).toEqual(
-      newTodo.title
-    );
+    expect(actual.todos[0].title).toEqual(newTodo.title);
 
     const newTodo2 = {
       id: "44",
@@ -36,9 +34,7 @@ describe("counter reducer", () => {
     };
     const actual2 = todoReducer(actual, add(newTodo2));
     expect(actual2.todos.length).toEqual(initialState.todos.length + 2);
-    expect(actual2.todos[initialState.todos.length + 1].title).toEqual(
-      newTodo2.title
-    );
+    expect(actual2.todos[0].title).toEqual(newTodo2.title);
   });
 
   it("should handle remove", () => {

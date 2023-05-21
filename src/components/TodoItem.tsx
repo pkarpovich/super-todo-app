@@ -69,7 +69,9 @@ export const TodoItem = memo(
             >
               {title}
             </Label>
-            <Description completed={completed}>{description}</Description>
+            {!!description && (
+              <Description completed={completed}>{description}</Description>
+            )}
           </div>
         </LabelContainer>
         <RemoveIcon data-testid="remove-icon" onClick={onRemove}>
